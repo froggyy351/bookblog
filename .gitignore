@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Security / Local settings
+.env
+.env.local
+
+# templateをgit管理する
+application.properties
