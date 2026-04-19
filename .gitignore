@@ -35,6 +35,3 @@ build/
 # Security / Local settings
 .env
 .env.local
-
-# templateをgit管理する
-application.properties
