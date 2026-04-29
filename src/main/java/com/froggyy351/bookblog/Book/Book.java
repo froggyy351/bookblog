@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "book")
+@Table(name = "books")
 public class Book {
 
+    //IDはLong型にするのがベストプラクティスらしい
+    //intは32bit、longは64bit。intでも21億らしいが以外と枯渇するらしいので、longの922京にしておくのが無難らしい
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //自動生成 Postgres側でCreateTableする時「serial」にする必要あり
-    private int id;
+    private long id;
 
     @Column(name = "title" ,nullable = false)
     private String title;
@@ -37,11 +39,11 @@ public class Book {
     private LocalDateTime updatedAt;
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
