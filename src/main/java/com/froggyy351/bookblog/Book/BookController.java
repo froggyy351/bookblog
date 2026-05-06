@@ -6,6 +6,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+// API用コントローラー（将来React連携用）
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
