@@ -9,7 +9,7 @@ import java.util.List;
 // API用コントローラー（将来React連携用）
 
 @RestController
-@RequestMapping("/books")
+//@RequestMapping("/books")
 public class BookController {
 
     private final BookRepository bookRepository;
