@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body>
+<h1>技術書登録</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>タイトル</th>
+        <th>著者</th>
+        <th>ISBN</th>
+        <th>画像URL</th>
+        <th>メモ</th>
+        <th>ステータス</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${bookList}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.status}"></td>
+    </tbody>
+</table>
+
+<!-- もしデータが空だった時の表示（任意） -->
+<p th:if="${bookList.isEmpty()}">書籍が登録されていません。</p>
+
+</body>
+</html>

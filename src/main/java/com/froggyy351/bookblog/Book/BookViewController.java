@@ -32,7 +32,6 @@ public class BookViewController {
         List<Book> bookList = bookRepository.findAll();
         model.addAttribute("bookList", bookList); //第1引数はThymeleafに渡す変数名、第2引数はこのメソッドでの変数名
         return "bookList"; //Thymeleafのファイル名を拡張子取ってStringで返す。templateの下にフォルダ切ってたらそれも指定要
-//        return bookRepository.findAll();
     }
 
 //    @GetMapping("/{id}")
