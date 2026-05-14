@@ -6,28 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-<h1>技術書登録</h1>
-<table border="1">
-    <thead>
-    <tr>
-        <th>タイトル</th>
-        <th>著者</th>
-        <th>ISBN</th>
-        <th>画像URL</th>
-        <th>メモ</th>
-        <th>ステータス</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="book : ${bookList}">
-        <td th:text="${book.title}"></td>
-        <td th:text="${book.author}"></td>
-        <td th:text="${book.status}"></td>
-    </tbody>
-</table>
-
-<!-- もしデータが空だった時の表示（任意） -->
-<p th:if="${bookList.isEmpty()}">書籍が登録されていません。</p>
+    <h1>技術書登録</h1>
+        <form action="">
+            <p>タイトル：<input type="text" th:field="*{title}"></p>
+            <p>著者：<input type="text" th:field="*{author}"></p>
+            <p>ISBN：<input type="text" th:field="*{isbn}"></p>
+            <p>画像：<input type="text" th:field="*{image}"></p>
+            <p>感想・メモ：<input type="text" th:field="*{memo}"></p>
+            <p>ステータス：<input type="text" th:field="*{status}"></p>
+        </form>
 
 </body>
 </html>

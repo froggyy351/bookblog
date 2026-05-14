@@ -22,10 +22,10 @@ public class BookViewController {
         this.bookRepository = bookRepository;
     }
 
-//    @PostMapping
-//    public Book createBook(@RequestBody Book book){
-//        return bookRepository.save(book);
-//    }
+    @PostMapping
+    public Book createBook(@RequestBody Book book){
+        return bookRepository.save(book);
+    }
 
     @GetMapping
     public String selectBookList(Model model){
