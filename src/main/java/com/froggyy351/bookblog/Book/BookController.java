@@ -1,5 +1,6 @@
 package com.froggyy351.bookblog.Book;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class BookController {
     }
 
     @PostMapping
-    public Book createBook(@RequestBody Book book){
+    public Book createBook(@Valid @RequestBody Book book){
         // save()は、保存したオブジェクトが戻り値になる
         return bookService.create(book);
     }
@@ -32,7 +33,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public Book updateBook(@PathVariable long id, @RequestBody Book book){
+    public Book updateBook(@PathVariable long id,@ Valid @RequestBody Book book){
         return bookService.update(id, book);
     }
 
