@@ -1,6 +1,8 @@
 package com.froggyy351.bookblog.Book;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.URL;
 
 import java.time.LocalDateTime;
 
@@ -15,21 +17,32 @@ public class Book {
     private long id;
 
     @Column(name = "title" ,nullable = false)
+    @NotBlank
+    @Size(max = 200)
     private String title;
 
     @Column(name = "author" ,nullable = false)
+    @NotBlank
+    @Size(max = 200)
     private String author;
 
     @Column(name = "isbn" ,nullable = false)
+    @NotBlank
+    @Pattern(regexp = "^(978|979)[0-9-]{14}$")  //ISBN-13のみ対応。2007年以前の書籍は対象外と判断した
     private String isbn;
 
     @Column(name = "image")
+    @Size(max = 500)
+    @URL
     private String image;
 
     @Column(name = "memo")
+    @Size(max = 1000)
     private String memo;
 
     @Column(name = "status" ,nullable = false)
+    @Min(1)
+    @Max(3)
     private int status;
 
     @Column(name = "created_at")
