@@ -29,7 +29,6 @@ public class Book {
     @Column(name = "isbn" ,nullable = false)
     @NotBlank
     @Pattern(regexp = "^(978|979)[0-9-]{14}$")  //ISBN-13のみ対応。2007年以前の書籍は対象外と判断した
-    @Size(min = 13, max = 17)
     private String isbn;
 
     @Column(name = "image")
