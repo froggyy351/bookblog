@@ -1,8 +1,6 @@
 package com.froggyy351.bookblog.Book;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class BookService {
 
     public Book findById(long id){
         return bookRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"該当のIDは存在していません。"));
+                .orElseThrow(() -> new BookNotFoundException("該当のIDは存在していません"));
     }
 
     public Book create(Book book){
@@ -32,7 +30,7 @@ public class BookService {
 
     public Book update(long id,Book book){
         Book existingBook = bookRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"該当のIDは存在していません。"));
+                .orElseThrow(() -> new BookNotFoundException("該当のIDは存在していません"));
         existingBook.setAuthor(book.getAuthor());
         existingBook.setTitle(book.getTitle());
         existingBook.setImage(book.getImage());
@@ -45,7 +43,7 @@ public class BookService {
 
     public void delete(long id){
         Book existingBook = bookRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "該当のIDは存在していません。"));
+                .orElseThrow(() -> new BookNotFoundException("該当のIDは存在していません"));
         bookRepository.deleteById(existingBook.getId());
     }
 }
