@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handleMethodArgumentNotValid(MethodArgumentNotValidException e){
         ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "入力値が不正です");
-        Map<String, String> errorMap = new HashMap<>();
+        Map<String, String> errorMap = new LinkedHashMap<>();
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
         //フィールドごとのエラーメッセージを詰める
         for(FieldError fieldError : fieldErrors){
