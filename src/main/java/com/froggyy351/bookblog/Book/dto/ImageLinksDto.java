@@ -1,4 +1,3 @@
 package com.froggyy351.bookblog.Book.dto;
 
-public class ImageLinksDto {
-}
+public record ImageLinksDto(String thumbnail){}

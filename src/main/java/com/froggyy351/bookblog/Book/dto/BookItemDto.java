@@ -1,4 +1,4 @@
 package com.froggyy351.bookblog.Book.dto;
 
-public class BookItemDto {
+public record BookItemDto(VolumeInfoDto volumeInfo) {
 }

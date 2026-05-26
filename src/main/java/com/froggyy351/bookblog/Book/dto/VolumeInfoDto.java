@@ -1,4 +1,5 @@
 package com.froggyy351.bookblog.Book.dto;
 
-public class VolumeInfoDto {
-}
+import java.util.List;
+
+public record VolumeInfoDto(String title, List<String> authors, ImageLinksDto imageLinks){}
