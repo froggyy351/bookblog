@@ -51,6 +51,10 @@ public class BookService {
     }
 
     public GoogleBooksResponseDto searchByIsbn(String isbn){
-        return googleBooksClient.searchByIsbn(isbn);
+        GoogleBooksResponseDto response = googleBooksClient.searchByIsbn(isbn);
+        if(response.items() == null || response.items().isEmpty()){
+            throw new BookNotFoundException("ISBNに該当する本が見つかりませんでした。ISBN：" + isbn);
+        }
+        return response;
     }
 }
