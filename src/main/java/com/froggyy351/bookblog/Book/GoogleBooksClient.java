@@ -13,6 +13,7 @@ public class GoogleBooksClient {
 
     private final RestClient restClient = RestClient.create();
     public GoogleBooksResponseDto searchByIsbn(String isbn){
-        return null;
+        String url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn + "&key=" + apiKey;
+        return restClient.get().uri(url).retrieve().body(GoogleBooksResponseDto.class);
     }
 }

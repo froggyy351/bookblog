@@ -1,5 +1,6 @@
 package com.froggyy351.bookblog.Book;
 
+import com.froggyy351.bookblog.Book.dto.GoogleBooksResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +12,10 @@ public class BookService {
     // 「コンストラクタ注入」
     // これにより、テストコードでRepositoryの偽物を注入しやすくなり、テストがしやすいというメリットがある
     private final BookRepository bookRepository;
-    public BookService(BookRepository bookRepository){
+    private final GoogleBooksClient googleBooksClient;
+    public BookService(BookRepository bookRepository, GoogleBooksClient googleBooksClient){
         this.bookRepository = bookRepository;
+        this.googleBooksClient = googleBooksClient;
     }
 
     public List<Book> findAll(){
@@ -45,5 +48,9 @@ public class BookService {
         Book existingBook = bookRepository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException("該当のIDは存在していません"));
         bookRepository.deleteById(existingBook.getId());
+    }
+
+    public GoogleBooksResponseDto searchByIsbn(String isbn){
+        return googleBooksClient.searchByIsbn(isbn);
     }
 }

@@ -1,5 +1,6 @@
 package com.froggyy351.bookblog.Book;
 
+import com.froggyy351.bookblog.Book.dto.GoogleBooksResponseDto;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,5 +41,10 @@ public class BookController {
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable long id){
         bookService.delete(id);
+    }
+
+    @GetMapping("/search")
+    public GoogleBooksResponseDto searchBooks(@RequestParam String isbn){
+        return bookService.searchByIsbn(isbn);
     }
 }
