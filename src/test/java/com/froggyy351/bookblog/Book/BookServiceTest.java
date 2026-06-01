@@ -73,7 +73,7 @@ public class BookServiceTest {
      * 正常系：create
      */
     @Test
-    public void create_withNonExistentId_returnsBook(){
+    public void create_withValidBook_returnsBook(){
         Book book = new Book();
         book.setId(1L);
         book.setTitle("テスト本");
@@ -108,7 +108,7 @@ public class BookServiceTest {
      * 正常系：delete
      */
     @Test
-    public void delete_withExistingId_returnsBook(){
+    public void delete_withExistingId_callsDeleteById(){
         Book book = new Book();
         book.setId(1L);
         book.setTitle("削除される本");
