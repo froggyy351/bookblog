@@ -23,7 +23,7 @@ public class BookControllerTest {
     private MockMvc mockMvc;
 
     /**
-     * 正常系：selectBooks
+     * 正常系：selectBooks（全件）
      */
     @Test
     public void selectBooks_ok_returns200() throws Exception{
@@ -36,5 +36,22 @@ public class BookControllerTest {
         mockMvc.perform(get("/api/books"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title").value("テスト本"));
+    }
+
+    /**
+     * 正常系：selectBooks（１件）
+     */
+    @Test
+    public void selectBooks_withId_returns200() throws Exception{
+        //Arrange
+        Book book = new Book();
+        book.setId(1L);
+        book.setTitle("テスト本");
+        when(bookService.findById(1L)).thenReturn(book);
+
+        //Act+Assert
+        mockMvc.perform(get("/api/books/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("テスト本"));
     }
 }
