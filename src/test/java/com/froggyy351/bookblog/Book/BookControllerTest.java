@@ -3,6 +3,7 @@ package com.froggyy351.bookblog.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -53,5 +54,18 @@ public class BookControllerTest {
         mockMvc.perform(get("/api/books/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("テスト本"));
+    }
+
+    /**
+     * 異常系：selectBooks（１件）
+     */
+    @Test
+    public void selectBooks_withNoExistingId_returns200() throws Exception{
+        //Arrange
+        when(bookService.findById(99L)).thenThrow(BookNotFoundException.class);
+
+        //Act+Assert
+        mockMvc.perform(get("/api/books/99"))
+                .andExpect(status().isNotFound());
     }
 }
