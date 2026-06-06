@@ -26,11 +26,9 @@ public class BookControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    /**
-     * 正常系：selectBooks（全件）
-     */
+    // 正常系：selectBooks（全件）
     @Test
-    public void selectBooks_ok_returns200() throws Exception{
+    public void selectBooks_withExistingBooks_returns200() throws Exception{
         //Arrange
         Book book = new Book();
         book.setTitle("テスト本");
@@ -42,9 +40,7 @@ public class BookControllerTest {
                 .andExpect(jsonPath("$[0].title").value("テスト本"));
     }
 
-    /**
-     * 正常系：selectBooks（１件）
-     */
+    // 正常系：selectBooks（１件）
     @Test
     public void selectBooks_withId_returns200() throws Exception{
         //Arrange
@@ -59,9 +55,7 @@ public class BookControllerTest {
                 .andExpect(jsonPath("$.title").value("テスト本"));
     }
 
-    /**
-     * 異常系：selectBooks（１件）
-     */
+    // 異常系：selectBooks（１件）
     @Test
     public void selectBooks_withNoExistingId_returns404() throws Exception{
         //Arrange
@@ -72,9 +66,7 @@ public class BookControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    /**
-     * 正常系：updateBook
-     */
+    // 正常系：updateBook
     @Test
     public void updateBook_withId_returns200() throws Exception{
         //Arrange
@@ -93,11 +85,9 @@ public class BookControllerTest {
                 .andExpect(status().isOk());
     }
 
-    /**
-     * 正常系：createBook
-     */
+    // 正常系：createBook
     @Test
-    public void createBook_withBook_returns200() throws Exception{
+    public void createBook_withBook_returns201() throws Exception{
         //Arrange
         Book book = new Book();
         book.setId(1L);
@@ -111,12 +101,10 @@ public class BookControllerTest {
                                 "\"author\":\"テストさん\", " +
                                 "\"isbn\":\"978-4-06-139801-6\", " +
                                 "\"status\":\"1\"}"))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 
-    /**
-     * 正常系：deleteBook
-     */
+    // 正常系：deleteBook
     @Test
     public void deleteBook_withId_returns200() throws Exception{
         //Arrange
