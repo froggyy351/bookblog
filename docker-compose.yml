@@ -1,0 +1,26 @@
+services:
+  app:
+    build: .
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/bookblog
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      GOOGLE_BOOKS_API_KEY: ${GOOGLE_BOOKS_API_KEY}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+  db:
+    image: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d bookblog"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: bookblog
+    volumes:
+      - ./src/main/resources/sql/create_books_table.sql:/docker-entrypoint-initdb.d/create_books_table.sql
