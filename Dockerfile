@@ -1,5 +1,5 @@
 # ベースイメージの指定
-FROM eclipse-temurin:21-jdk-alpine
+FROM eclipse-temurin:21-jre-alpine
 
 # コンテナ内の作業ディレクトリを指定
 WORKDIR /app
