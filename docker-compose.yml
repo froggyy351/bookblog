@@ -1,0 +1,20 @@
+services:
+  app:
+    image: bookblog
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/bookblog
+      DB_USER: useruser
+      DB_PASSWORD: user1234
+      GOOGLE_BOOKS_API_KEY: ${GOOGLE_BOOKS_API_KEY}
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: useruser
+      POSTGRES_PASSWORD: user1234
+      POSTGRES_DB: bookblog
+    volumes:
+      - ./src/main/resources/sql/create_books_table.sql:/docker-entrypoint-initdb.d/create_books_table.sql
