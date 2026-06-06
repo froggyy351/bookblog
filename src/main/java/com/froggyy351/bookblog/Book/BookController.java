@@ -2,6 +2,7 @@ package com.froggyy351.bookblog.Book;
 
 import com.froggyy351.bookblog.Book.dto.GoogleBooksResponseDto;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class BookController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Book createBook(@Valid @RequestBody Book book){
         // save()は、保存したオブジェクトが戻り値になる
         return bookService.create(book);
