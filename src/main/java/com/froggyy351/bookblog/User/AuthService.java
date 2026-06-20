@@ -19,7 +19,6 @@ public class AuthService {
     }
 
     public String login(String username, String password){
-
         User user = userRepository.findByUserName(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
         if(bCryptPasswordEncoder.matches(password, user.getPassword())){
