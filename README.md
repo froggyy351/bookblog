@@ -1,8 +1,41 @@
+## 書籍管理API - bookblog
+
 ## このアプリについて
 
 - コーディング学習のために作成した書籍管理APIアプリ
 - 自分が読んだ技術書を管理するアプリを作れば、コンテンツもアプリもポートフォリオとして使えると思い作成
 
+
+## 技術スタック
+
+| 種別 | 技術 |
+|------|------|
+| 言語 | Java 21 |
+| フレームワーク | Spring Boot 4.0.5 |
+| ORM | Spring Data JPA / Hibernate |
+| DB | PostgreSQL 17.9 |
+| 認証 | Spring Security / JWT |
+| ビルドツール | Maven |
+| CI | GitHub Actions |
+| コンテナ | Docker / Docker Compose |
+
+## 主な機能
+
+- 技術書のCRUD操作（登録・一覧取得・詳細取得・更新・削除）
+- JWTを使ったトークンベース認証
+- BCryptによるパスワードハッシュ化
+- ステータス管理（積読 / 読書中 / 既読）
+
+## APIエンドポイント
+
+| メソッド | URL | 説明 | 認証 |
+|----------|-----|------|------|
+| POST | /api/auth/login | ログイン（JWTトークン取得） | 不要 |
+| GET | /api/books | 書籍一覧取得 | 必要 |
+| GET | /api/books/{id} | 書籍1件取得 | 必要 |
+| POST | /api/books | 書籍登録 | 必要 |
+| PUT | /api/books/{id} | 書籍更新 | 必要 |
+| DELETE | /api/books/{id} | 書籍削除 | 必要 |
 
 ## 自分ルール
 
