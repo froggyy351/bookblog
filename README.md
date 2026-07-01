@@ -45,4 +45,4 @@
 - 今(2026/4)の自分のスキル感では完全に0から開発は難しい、かつ学習効率が悪いと判断し、成果物イメージを伝えたClaude(Sonnet4.6)に作成してもらったWBSをインプットに作業した。
 - 実際のWBSは以下。</br>
 https://docs.google.com/spreadsheets/d/1PlE-uX0UGPcoRVLaTrBPaoZDxgI2JEBiQIkO4o8dWPs/edit?usp=sharing
-- またWBSを生成したコンテキストを持つチャットにPM役、教育係を依頼。
+- またWBSを生成したコンテキストを持つチャットに指示役、教育係を依頼。
